@@ -1,0 +1,71 @@
+import java.util.Scanner;
+public class taxesandfees {
+final int rto=113990;
+final int tcs=11000;
+public int showroom(int show_cost){
+	return rto+tcs+show_cost;
+}
+}
+public class totalamt extends taxesandfees{
+int insu_amt=47300;
+int addassc=15000;
+final int discount=20000;
+int addasscm(String a) {
+	if(a.equals("no")) {
+		return 0;
+	}
+	else
+		return addassc;
+}
+int addinsu(String i){
+	if(i.equals("no")) {
+		return 0;
+	}
+	else
+		return insu_amt;}
+int givediscount(String a,String i) {
+	if(i.equals("no")&& a.equals("no")) {
+		System.out.println("Dealer Discount : 0");
+		System.out.println("To get Discount any one of the additional features(Insurance or Additional Accessories or Both) have to be added  ");
+		return 0;
+	}
+	else
+		System.out.println("Dealer Discount : "+discount);
+		return discount;
+}	
+void display(String carmodel,int carcost,String i,String a){
+	int d=givediscount(a,i);
+	int total=showroom(carcost)+addinsu(i)+addasscm(a)-d;
+	System.out.printf("\nTotal cost %d((%s %d)+%d(RTO)+%d(Insurance)+%d(TCS)+%d(Additional Accessories)-%d(Dealer Discount))",total,carmodel,carcost,rto,addinsu(i),tcs,addasscm(a),d);
+}}
+public class cardealer{
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String carmodel[]= {"Polo Trendline","Polo Highline","Virtus Trendline","Virtus Highline","Taigun Trendline","Taigun Highline","Taigun Topline"};
+		int carcost[]= {870000,1009000,1105000,1308000,1489000,1542000,1771000};
+		System.out.println("This cars are Available in This showroom : ");
+		for(int i=0;i<7;i++){
+			System.out.println(carmodel[i]);
+		}
+		System.out.println("Select car model :");
+		Scanner s= new Scanner(System.in);
+		String cs=s.nextLine();
+		int cscost=0;
+		for(int i=0;i<7;i++) {
+			if(carmodel[i].equals(cs)) {
+				cscost=carcost[i];
+				break;
+			}
+		}
+		System.out.println("");
+		String insu;
+		System.out.println("Do you need Insurance: ");
+		insu=s.nextLine();
+		String addacc;
+		System.out.println("Do you need Additional Accessories: ");
+		addacc=s.nextLine();
+		totalamt tamt=new totalamt();
+		tamt.display(cs,cscost,insu,addacc);
+	}
+}
+
